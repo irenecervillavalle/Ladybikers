@@ -4,7 +4,7 @@ import "../../styles/navbar.css";
 
 export const Login = () => {
 	return (
-		<form className="container mt-5">
+		<form className="container col-3 mt-5">
   <div className="mb-3">
     <label forHTML="exampleInputEmail1" className="form-label">Email address</label>
     <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
