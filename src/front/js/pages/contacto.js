@@ -5,8 +5,8 @@ import "../../styles/contacto.css";
 
 export const Contacto = () => {
   return (
-
+    <div className="grow">
     <center><img id="img" src={moteras1} /></center>
-   
+   </div>
   )
 }
