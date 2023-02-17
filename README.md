@@ -47,11 +47,11 @@ And you will see the following message:
   Users created successfully!
 ```
 
-To update with all yours tables you can edit the file app.py and go to the line 80 to insert the code to populate others tables
+To update with all yours tables you can edit the file and go to the line 80 to insert the code to populate others tables
 
 ### Front-End Manual Installation:
 
--   Make sure you are using node version 14+ and that you have already successfully installed and runned the backend.
+- Make sure you are using node version 14+ and that you have already successfully installed and runned the backend.
 
 1. Install the packages: `$ npm install`
 2. Start coding! start the webpack dev server `$ npm run start`

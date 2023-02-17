@@ -1,5 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
+
 db = SQLAlchemy()
+
 class Usuario(db.Model):
     __tablename__ = 'usuario'
     id = db.Column(db.Integer, primary_key=True)
@@ -9,8 +11,10 @@ class Usuario(db.Model):
     usuario = db.Column(db.String(60), unique=True, nullable=False)
     contrasena = db.Column(db.String(60), unique=False, nullable=False)
     favoritos = db.relationship('Favorito', backref=db.backref("usuario"))
+
     def __repr__(self):
         return f'<Usuario ID: {self.id} - {self.usuario}>'
+
     def serialize(self):
         return {
             "id": self.id,
@@ -21,6 +25,7 @@ class Usuario(db.Model):
             "favoritos": [f.ruta_id for f in self.favoritos]
             # do not serialize the password, its a security breach
         }
+
 class Ruta(db.Model):
     __tablename__ = 'ruta'
     id = db.Column(db.Integer, primary_key=True)
@@ -31,8 +36,10 @@ class Ruta(db.Model):
     temporalidad = db.Column(db.String(60))
     creador = db.Column(db.String(60), db.ForeignKey('usuario.usuario'), nullable=True)
     favoritos = db.relationship('Favorito', backref=db.backref("ruta"))
+
     def __repr__(self):
         return f'<Ruta ID: {self.id}>'
+
     def serialize(self):
         return {
             "id": self.id,
@@ -42,13 +49,16 @@ class Ruta(db.Model):
             "categoria": self.categoria,
             "temporalidad": self.temporalidad
         }
+
 class Favorito(db.Model):
     __tablename__ = 'favorito'
     id = db.Column(db.Integer, primary_key=True)
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
     ruta_id = db.Column(db.Integer, db.ForeignKey('ruta.id'), nullable=False)
+
     def __repr__(self):
         return f'<Favorito ID: {self.id}, Usuario {self.usuario_id} - Ruta {self.ruta_id}>'
+
     def serialize(self):
         return {
             "id": self.id,
