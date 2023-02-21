@@ -1,26 +1,22 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			loggedIn: false,
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			login: function (){
+			const store = getStore();
+			console.log ('login()')
+			store.loggedIn = true;
+			setStore(store);
 			},
-
+			logout: function () {
+			const store = getStore();
+			console.log ('logout()')
+			store.loggedIn = false;
+			setStore(store);
+			},
 			getMessage: async () => {
 				try{
 					// fetching data from the backend
