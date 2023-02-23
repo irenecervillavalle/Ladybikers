@@ -4,3 +4,12 @@
 * {
     box-sizing: border-box;
   }
+  .rejilla-ruta{
+grid-template-columns: 1fr;
+
+  }
+  @media screen and (min-width: 460px) {
+    .rejilla-ruta{
+    grid-template-columns: 1fr 1fr;
+  }
+}
