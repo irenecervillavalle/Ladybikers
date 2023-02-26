@@ -42,8 +42,8 @@ def login():
     if request.method != 'POST':
         return jsonify({"error": "esta ruta espera el metodo POST"}), 405
     try:
-        usuario = request.json.get('usuario', None)
-        contrasena = request.json.get('contrasena', None)
+        usuario = request.json.get('user', None)
+        contrasena = request.json.get('password', None)
         usuario_db = Usuario.query.filter_by(usuario=usuario).first()
         if not usuario_db:
             return jsonify({"error": "usuario no encontrado"}), 404
