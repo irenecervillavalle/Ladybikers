@@ -7,3 +7,12 @@
   .navbar-nav .nav-item {
     color: pink;
   }
+
+#navbarNav{
+  padding: 0 20px !important;
+}
+
+.item-perfil{
+  width: 100px !important;
+  margin-right: -85px !important;
+}

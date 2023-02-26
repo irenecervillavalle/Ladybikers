@@ -30,7 +30,7 @@ export const Navbar = () => {
             </li>
           </Link>
           <Link to="/dashboard" className="nav-link">
-            <li id="nav5" className="nav-item">
+            <li id="nav5" className="nav-item item-perfil">
              Mi perfil
             </li>
           </Link>
