@@ -47,7 +47,8 @@ class Ruta(db.Model):
             "punto_llegada": self.punto_llegada,
             "valoracion_usuario": self.valoracion_usuario,
             "categoria": self.categoria,
-            "temporalidad": self.temporalidad
+            "temporalidad": self.temporalidad,
+            "creador": self.creador
         }
 
 class Favorito(db.Model):
