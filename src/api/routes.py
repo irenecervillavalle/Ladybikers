@@ -64,6 +64,7 @@ def usuario_actual():
     try:
         usuario_actual = get_jwt_identity()
         usuario_db = Usuario.query.filter_by(usuario=usuario_actual).first()
+        print(usuario_actual)
         return jsonify({"datos usuario": usuario_db.serialize()}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
