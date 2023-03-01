@@ -20,6 +20,7 @@ def create_user():
         email = user_data['email']
         usuario = user_data['usuario']
         contrasena = user_data['contrasena']
+        telefono = user_data ['telefono']
         is_active = user_data['is_active']
         nuevo_usuario = Usuario(
             nombre = nombre,
@@ -27,6 +28,7 @@ def create_user():
             email = email,
             usuario = usuario,
             contrasena = contrasena,
+            telefono = telefono,
             is_active = is_active
         )
         db.session.add(nuevo_usuario)

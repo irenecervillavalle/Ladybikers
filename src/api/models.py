@@ -10,6 +10,7 @@ class Usuario(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     usuario = db.Column(db.String(60), unique=True, nullable=False)
     contrasena = db.Column(db.String(60), unique=False, nullable=False)
+    telefono = db.Column (db.Integer(15), unique=True, nullable=False)
     favoritos = db.relationship('Favorito', backref=db.backref("usuario"))
 
     def __repr__(self):
