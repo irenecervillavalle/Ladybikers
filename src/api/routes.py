@@ -5,9 +5,15 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from api.models import db, Usuario, Ruta, Favorito
 from api.utils import generate_sitemap, APIException
+from twilio.rest import Client
 
 api = Blueprint('api', __name__)
+# Your Account SID from twilio.com/console
+account_sid = "AC05ae77d092fdbbe8afdf2bb12ee0f4fe"
+# Your Auth Token from twilio.com/console
+auth_token  = "ecc874e65b909fdd4520e2d03f5f2894"
 
+client = Client(account_sid, auth_token)
 # crear usuario
 @api.route('/signup', methods=['POST'])
 def create_user():
@@ -33,6 +39,12 @@ def create_user():
         )
         db.session.add(nuevo_usuario)
         db.session.commit()
+        message = client.messages.create(
+            to= f"+34{telefono}", 
+            from_="+12762862213",
+            body= f"Hola Bienvenida {nombre} al club de Ladybikers!")
+
+        print(message.sid)
         return jsonify({"mensaje": "nuevo usuario creado con exito", "datos_usuario": nuevo_usuario.serialize()}), 200
     except Exception as e:
         db.session.rollback()
