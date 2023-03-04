@@ -14,7 +14,8 @@ import { Contacto } from "./pages/contacto";
 import { Rutas } from "./pages/rutas";
 import { About } from "./pages/about";
 import { Dashboard } from "./pages/dashboard";
-import { Login2 } from "./pages/Login2";
+import { Register } from "./pages/register"
+
 
 //create your first component
 const Layout = () => {
@@ -30,11 +31,11 @@ const Layout = () => {
                     <Routes>
                         <Route element={<Home />} path="/" />
                         <Route element={<Login />} path="/login" />
+                        <Route element={<Register />} path="/register" />
                         <Route element={<Contacto />} path="/contacto" />
                         <Route element={<Rutas />} path="/rutas" />
                         <Route element={<Dashboard />} path="/dashboard" />
-                        <Route element={<About />} path="/about" />
-                        <Route element={<Login2 />} path="/login2" />
+                        <Route element={<About />} path="/about" />  
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />

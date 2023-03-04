@@ -7,7 +7,7 @@ export function Dashboard () {
   return (
     <div>
     <h1>Esta es mi pagina de usuario registrado</h1>
-    {store.loggedIn ? <span>Bienvenida</span> : <Navigate to="/login2" />}
+    {store.loggedIn ? <span>Bienvenida</span> : <Navigate to="/login" />}
     <button onClick={() => actions.logout()}>Log Out</button>
     </div>
   );

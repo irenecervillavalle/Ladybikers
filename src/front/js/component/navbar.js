@@ -7,7 +7,7 @@ export const Navbar = () => {
     <nav className="navbar navbar-expand-lg bg-body-tertiary bg-dark">
       <div className="container">
         <Link to="/">
-          <h3 id="nav1" className="navbar-brand h1 ms-5"><i class="fa-solid fa-motorcycle"></i>
+          <h3 id="nav1" className="navbar-brand h1 ms-5"><i className="fa-solid fa-motorcycle"></i>
             LadyBikers
           </h3>
         </Link>
@@ -36,7 +36,7 @@ export const Navbar = () => {
           </Link>
 		  <Link to="/login" className="nav-link">
             <li id="nav5" className="nav-item ms-5">
-			<i class="fa-solid fa-user"></i>
+			<i className="fa-solid fa-user"></i>
             </li>
           </Link>
 		  </ul>

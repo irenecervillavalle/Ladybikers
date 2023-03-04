@@ -1,36 +1,38 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/navbar.css";
 import { urlApi } from "../config";
-import { Navigate } from "react-router-dom";
-import { Context } from "../store/appContext";
 
-
-
-
-export const Login = () => {
+export const Register = () => {
   const [isError, setIsError] = useState(false);
-  const { actions, store } = useContext(Context);
+
   const onSubmit = async (e) => {
     e.preventDefault();
 
     const data = {
       email: e.target.email.value,
       password: e.target.password.value,
+      name: e.target.name.value,
+      phonenumber: e.target.phonenumber.value
     };
-     // const resApi = await checkData(data);
+
     const resApi = checkData(data);
+
+
+
+    // const resApi = await checkData(data);
     if (resApi.status === 404) {
       setIsError(true);
     }
+
     else if (resApi.status === 400) {
-      setIsError(true);
-  }
+        setIsError(true);
+    }
     console.log(resApi);
   };
 
   const checkData = async (data) => {
-    /* return fetch (urlApi + "/login",{method: "POST", headers:{"content-type":"application/json"},body:JSON.stringify(data)})
+    /* return fetch (urlApi + "/signup",{method: "POST", headers:{"content-type":"application/json"},body:JSON.stringify(data)})
     .then (response => response.json())
     .then (response => {
       return response
@@ -43,27 +45,32 @@ export const Login = () => {
   };
 
   return (
-  <div>
-     <h1>Login</h1>
-      
-        {store.loggedIn ? <Navigate to="/dashboard" /> : <p>Not logged In</p>}
-      
     <form className="container col-3 mt-5" onSubmit={onSubmit}>
       {isError && <p>Credenciales Invalidas</p>}
 
+      <div className="mb-3">
+        <label htmlFor="Name" className="form-label">
+          Name
+        </label>
+        <input
+          type="text"
+          name="name"
+          className="form-control"
+          id="Name"
+        />
+      </div>
       <div className="mb-3">
         <label htmlFor="exampleInputEmail1" className="form-label">
           Email address
         </label>
         <input
           type="email"
+          name="email"
           className="form-control"
-          name="name"
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
         />
         <div id="emailHelp" className="form-text">
-          We'll never share your email with anyone else.
         </div>
       </div>
       <div className="mb-3">
@@ -77,6 +84,10 @@ export const Login = () => {
           id="exampleInputPassword1"
         />
       </div>
+<div className="mb-3">
+    <label htmlFor="phonenumber" className="form-label">Phone Number</label>
+    <input type="text" name= "phonenumber" className="form-control" id="phonenumber" aria-describedby="emailHelp"/>
+  </div>
       <div className="mb-3 form-check">
         <input
           type="checkbox"
@@ -87,11 +98,10 @@ export const Login = () => {
           Check me out
         </label>
       </div>
+
       <button type="submit" className="btn btn-primary">
         Submit
       </button>
     </form>
-    <p className="text-center">Don´t have an account, please <Link to="/register" relative ="path">register</Link></p>
-    </div>
   );
 };
