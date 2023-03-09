@@ -17,17 +17,20 @@ client = Client(account_sid, auth_token)
 # crear usuario
 @api.route('/signup', methods=['POST'])
 def create_user():
+
     if request.method != 'POST':
         return jsonify({"error": "esta ruta espera el metodo POST"}), 405
     try:
+
         user_data = request.get_json()
+        
+        print(user_data)
         nombre = user_data['nombre']
         apellido = user_data['apellido']
         email = user_data['email']
         usuario = user_data['usuario']
         contrasena = user_data['contrasena']
         telefono = user_data ['telefono']
-        is_active = user_data['is_active']
         nuevo_usuario = Usuario(
             nombre = nombre,
             apellido = apellido,
@@ -35,7 +38,6 @@ def create_user():
             usuario = usuario,
             contrasena = contrasena,
             telefono = telefono,
-            is_active = is_active
         )
         db.session.add(nuevo_usuario)
         db.session.commit()

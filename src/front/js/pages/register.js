@@ -10,25 +10,26 @@ export const Register = () => {
     e.preventDefault();
 
     const data = {
+      nombre: e.target.name.value,
+      apellido: e.target.lastName.value,
       email: e.target.email.value,
-      password: e.target.password.value,
-      name: e.target.name.value,
-      phonenumber: e.target.phonenumber.value
+      usuario: e.target.user.value,
+      contrasena: e.target.password.value,
+      telefono: e.target.phonenumber.value,
     };
 
-    const resApi = checkData(data);
+    const URL =
+      "https://3001-irenecervill-ladybikers-yfalmu4qc3v.ws-eu89b.gitpod.io/api";
 
-
-
-    // const resApi = await checkData(data);
-    if (resApi.status === 404) {
-      setIsError(true);
-    }
-
-    else if (resApi.status === 400) {
-        setIsError(true);
-    }
-    console.log(resApi);
+    fetch(`${URL}/signup`, {
+      headers:{
+        "Content-Type" : 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
 
   const checkData = async (data) => {
@@ -52,12 +53,13 @@ export const Register = () => {
         <label htmlFor="Name" className="form-label">
           Name
         </label>
-        <input
-          type="text"
-          name="name"
-          className="form-control"
-          id="Name"
-        />
+        <input type="text" name="name" className="form-control" id="Name" />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="Name" className="form-label">
+          LastName
+        </label>
+        <input type="text" name="lastName" className="form-control" id="Name" />
       </div>
       <div className="mb-3">
         <label htmlFor="exampleInputEmail1" className="form-label">
@@ -70,8 +72,13 @@ export const Register = () => {
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
         />
-        <div id="emailHelp" className="form-text">
-        </div>
+        <div id="emailHelp" className="form-text"></div>
+      </div>
+      <div className="mb-3">
+        <label htmlFor="Name" className="form-label">
+          User
+        </label>
+        <input type="text" name="user" className="form-control" id="Name" />
       </div>
       <div className="mb-3">
         <label htmlFor="exampleInputPassword1" className="form-label">
@@ -84,10 +91,18 @@ export const Register = () => {
           id="exampleInputPassword1"
         />
       </div>
-<div className="mb-3">
-    <label htmlFor="phonenumber" className="form-label">Phone Number</label>
-    <input type="text" name= "phonenumber" className="form-control" id="phonenumber" aria-describedby="emailHelp"/>
-  </div>
+      <div className="mb-3">
+        <label htmlFor="phonenumber" className="form-label">
+          Phone Number
+        </label>
+        <input
+          type="text"
+          name="phonenumber"
+          className="form-control"
+          id="phonenumber"
+          aria-describedby="emailHelp"
+        />
+      </div>
       <div className="mb-3 form-check">
         <input
           type="checkbox"
@@ -99,9 +114,7 @@ export const Register = () => {
         </label>
       </div>
 
-      <button type="submit" className="btn btn-primary">
-        Submit
-      </button>
+      <button className="btn btn-primary">Submit</button>
     </form>
   );
 };
