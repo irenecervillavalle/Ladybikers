@@ -19,17 +19,19 @@ export const Register = () => {
     };
 
     const URL =
-      "https://3001-irenecervill-ladybikers-yfalmu4qc3v.ws-eu89b.gitpod.io/api";
+      "https://3001-irenecervill-ladybikers-cvqjgttusr7.ws-eu90.gitpod.io/api";
 
     fetch(`${URL}/signup`, {
-      headers:{
-        "Content-Type" : 'application/json'
+      headers: {
+        "Content-Type": "application/json",
       },
       method: "POST",
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        localStorage.setItem("token", data.token);
+      });
   };
 
   const checkData = async (data) => {

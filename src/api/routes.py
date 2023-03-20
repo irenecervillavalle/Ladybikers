@@ -2,22 +2,24 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
 from api.models import db, Usuario, Ruta, Favorito
 from api.utils import generate_sitemap, APIException
 from twilio.rest import Client
 
 api = Blueprint('api', __name__)
-# Your Account SID from twilio.com/console
-account_sid = "AC05ae77d092fdbbe8afdf2bb12ee0f4fe"
-# Your Auth Token from twilio.com/console
-auth_token  = "ecc874e65b909fdd4520e2d03f5f2894"
+app = Flask(__name__)
+app.config["JWT_SECRET_KEY"]='super-secret'
+jwt = JWTManager(app)
 
-client = Client(account_sid, auth_token)
 # crear usuario
 @api.route('/signup', methods=['POST'])
 def create_user():
+    account_sid =  'AC05ae77d092fdbbe8afdf2bb12ee0f4fe'
+    auth_token = '113c519be58af071d3be05a032e965b5'
+    client = Client(account_sid, auth_token)
 
+    
     if request.method != 'POST':
         return jsonify({"error": "esta ruta espera el metodo POST"}), 405
     try:
@@ -41,13 +43,14 @@ def create_user():
         )
         db.session.add(nuevo_usuario)
         db.session.commit()
+        access_token = create_access_token(identity = email)
         message = client.messages.create(
             to= f"+34{telefono}", 
             from_="+12762862213",
             body= f"Hola Bienvenida {nombre} al club de Ladybikers!")
 
         print(message.sid)
-        return jsonify({"mensaje": "nuevo usuario creado con exito", "datos_usuario": nuevo_usuario.serialize()}), 200
+        return jsonify({"token" : access_token, "mensaje": "nuevo usuario creado con exito", "datos_usuario": nuevo_usuario.serialize()}), 200
     except Exception as e:
         db.session.rollback()
         return jsonify({"error": str(e)}), 500
