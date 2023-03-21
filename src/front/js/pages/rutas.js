@@ -1,11 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "../../styles/navbar.css";
 
 const img1 = "/moteras1.jpg";
 const img2 = "/motohome.jpg";
 
 export const Rutas = () => {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    return <Navigate to="/login" />;
+  }
+
   return (
     <div className="d-grid m-4 gap-4 rejilla-ruta">
       <div className="card flex-row">

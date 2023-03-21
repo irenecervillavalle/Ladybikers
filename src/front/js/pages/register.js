@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/navbar.css";
 import { urlApi } from "../config";
 
 export const Register = () => {
   const [isError, setIsError] = useState(false);
+  const navigate = useNavigate()
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +20,7 @@ export const Register = () => {
     };
 
     const URL =
-      "https://3001-irenecervill-ladybikers-cvqjgttusr7.ws-eu90.gitpod.io/api";
+      "https://3001-irenecervill-ladybikers-coztfh0jqwh.ws-eu90.gitpod.io/api";
 
     fetch(`${URL}/signup`, {
       headers: {
@@ -30,7 +31,7 @@ export const Register = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        localStorage.setItem("token", data.token);
+        navigate('/login')
       });
   };
 
