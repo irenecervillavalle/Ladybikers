@@ -20,7 +20,7 @@ export const Login = () => {
     };
 
     const URL =
-      "https://3001-irenecervill-ladybikers-3t7f3rf50xs.ws-eu94.gitpod.io/api";
+      "https://3001-irenecervill-ladybikers-3t7f3rf50xs.ws-eu93.gitpod.io/api";
 
     fetch(`${URL}/login`, {
       headers: {
@@ -36,7 +36,9 @@ export const Login = () => {
         return response.json();
       })
       .then((data) => {
+        console.log(data);
         localStorage.setItem("token", data.access_token);
+        localStorage.setItem("user", data.user.name);
         navigate("/dashboard");
       })
       .catch((err) => setIsError(true));

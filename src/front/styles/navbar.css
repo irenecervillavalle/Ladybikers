@@ -1,18 +1,41 @@
 #btn1 {
-    color: black;
-    background-color: pink;
-  }
-  #logo,
-  .navbar-toggler-icon,
-  .navbar-nav .nav-item {
-    color: pink;
-  }
-
-#navbarNav{
-  padding: 0 20px !important;
+  color: black;
+  background-color: pink;
+}
+#logo,
+.navbar-toggler-icon,
+.navbar-nav .nav-item {
+  color: pink;
 }
 
-.item-perfil{
-  width: 100px !important;
-  margin-right: -85px !important;
+#navbarNav {
+  padding: 0 20px !important;
+  flex-basis: none !important;
+}
+
+.icon-user {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: pink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-user > p{
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.profile{
+  width: 85px;
 }

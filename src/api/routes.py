@@ -16,7 +16,7 @@ jwt = JWTManager(app)
 @api.route('/signup', methods=['POST'])
 def create_user():
     account_sid =  'AC05ae77d092fdbbe8afdf2bb12ee0f4fe'
-    auth_token = '01d5ac1a91f2c604585b367b4066109f'
+    auth_token = '4ada3b31143d643be2743547234ed433'
     client = Client(account_sid, auth_token)
 
     
@@ -63,13 +63,12 @@ def login():
         usuario = request.json.get('user', None)
         contrasena = request.json.get('password', None)
         usuario_db = Usuario.query.filter_by(usuario=usuario).first()
-        
         if not usuario_db:
             return jsonify({"error": "usuario no encontrado"}), 404
         if usuario_db.contrasena != contrasena:
             return jsonify({"error": "contraseña incorrecta"}), 400
         access_token = create_access_token(identity=usuario)
-        return jsonify({"mensaje": "login exitoso", "access_token": access_token}), 200
+        return jsonify({ "user" : { "name" : usuario_db.nombre } , "access_token": access_token}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

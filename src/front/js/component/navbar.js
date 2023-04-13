@@ -3,20 +3,23 @@ import { Link } from "react-router-dom";
 import "../../styles/navbar.css";
 
 export const Navbar = () => {
+  const user = localStorage.getItem("user");
+
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary bg-dark">
       <div className="container">
         <Link to="/">
-          <h3 id="nav1" className="navbar-brand h1 ms-5"><i className="fa-solid fa-motorcycle"></i>
+          <h3 id="nav1" className="navbar-brand h1 ms-5">
+            <i className="fa-solid fa-motorcycle"></i>
             LadyBikers
           </h3>
         </Link>
-		</div>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
+      </div>
+      <div className="collapse navbar-collapse" id="navbarNav">
+        <ul className="navbar-nav">
           <Link to="/about" className="nav-link">
             <li id="nav2" className="nav-item">
-             Conocenos
+              Conocenos
             </li>
           </Link>
           <Link to="/rutas" className="nav-link">
@@ -29,20 +32,18 @@ export const Navbar = () => {
               Contacto
             </li>
           </Link>
-          <Link to="/dashboard" className="nav-link">
+          <Link to="/dashboard" className="nav-link profile">
             <li id="nav5" className="nav-item item-perfil">
-             Mi perfil
+              Mi perfil
             </li>
           </Link>
-		  <Link to="/login" className="nav-link">
-            <li id="nav5" className="nav-item ms-5">
-			<i className="fa-solid fa-user"></i>
-            </li>
-          </Link>
-		  </ul>
-
-          </div>
-		
+          {user && (
+            <div className="icon-user">
+              <p>{user[0].toUpperCase()}</p>
+            </div>
+          )}
+        </ul>
+      </div>
     </nav>
   );
 };
