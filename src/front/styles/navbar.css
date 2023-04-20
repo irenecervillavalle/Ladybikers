@@ -14,6 +14,7 @@
 }
 
 .icon-user {
+  position: relative;
   width: 35px;
   height: 35px;
   border-radius: 50%;
@@ -21,9 +22,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
-.icon-user > p{
+.cont-logout {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 150px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 10px;
+  z-index: 2;
+}
+
+.cont-logout p {
+  margin: 0;
+}
+
+.icon-user > p {
   font-size: 20px;
   font-weight: 600;
   margin: 0;
@@ -36,6 +54,6 @@
   align-items: center;
 }
 
-.profile{
+.profile {
   width: 85px;
 }

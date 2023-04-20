@@ -1,9 +1,18 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/navbar.css";
 
 export const Navbar = () => {
+  const navigate = useNavigate();
   const user = localStorage.getItem("user");
+  const [isLogout, setIsLogout] = useState(false);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem('dataUser')
+    navigate("/login");
+  };
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary bg-dark">
@@ -32,14 +41,19 @@ export const Navbar = () => {
               Contacto
             </li>
           </Link>
-          <Link to="/dashboard" className="nav-link profile">
+         { user && <Link to="/dashboard" className="nav-link profile">
             <li id="nav5" className="nav-item item-perfil">
               Mi perfil
             </li>
-          </Link>
+          </Link>}
           {user && (
-            <div className="icon-user">
+            <div className="icon-user" onClick={() => setIsLogout(!isLogout)}>
               <p>{user[0].toUpperCase()}</p>
+              {isLogout && (
+                <div className="cont-logout">
+                  <p onClick={logout}>Logout</p>
+                </div>
+              )}
             </div>
           )}
         </ul>
