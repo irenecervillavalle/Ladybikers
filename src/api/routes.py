@@ -73,6 +73,23 @@ def login():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+#Validar si existe el usuario         
+@api.route('/existuser', methods=['POST'])
+def existuser():
+    if request.method != 'POST':
+        return jsonify({"error": "esta ruta espera el metodo POST"}), 405
+    try:
+        email = request.json.get('email', None)
+        usuario_db = Usuario.query.filter_by(email=email).first()
+        print('test')
+        if usuario_db:
+            return jsonify({"success": True, "message": "El usuario existe"}), 200
+        else:
+            return jsonify({"success": False, "message": "El usuario no existe"}), 404
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 # acceder info usuario
 @api.route('/usuario', methods=['GET'])
 @jwt_required() 

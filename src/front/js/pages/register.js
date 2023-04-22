@@ -20,7 +20,7 @@ export const Register = () => {
     };
 
     const URL =
-      "https://3001-irenecervill-ladybikers-f09k05ccz0f.ws-eu94.gitpod.io/api"
+      "https://3001-irenecervill-ladybikers-ztsotawghti.ws-eu95.gitpod.io/api"
 
     fetch(`${URL}/signup`, {
       headers: {

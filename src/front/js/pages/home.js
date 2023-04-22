@@ -7,11 +7,10 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="text-center mt-5">
-			<h1>Bienvenidas a nuestro Club!!</h1>
-			<div>
-			<img src={motohome} />
-			</div>
+		<div className="hero">
+			<img src={motohome} alt="Motohome" className="hero_image" />
+			<h1 className="title">Bienvenidas a nuestro Club</h1>
+				
 		</div>
 	);
 };

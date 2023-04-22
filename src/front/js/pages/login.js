@@ -4,11 +4,13 @@ import "../../styles/navbar.css";
 import { urlApi } from "../config";
 import { Navigate } from "react-router-dom";
 import { Context } from "../store/appContext";
+import SimpleModal from "../components/Modals/SimpleModal";
 
 export const Login = () => {
   const [isError, setIsError] = useState(false);
   const { actions, store } = useContext(Context);
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +22,7 @@ export const Login = () => {
     };
 
     const URL =
-      "https://3001-irenecervill-ladybikers-f09k05ccz0f.ws-eu94.gitpod.io/api";
+      "https://3001-irenecervill-ladybikers-ztsotawghti.ws-eu95.gitpod.io/api";
 
     fetch(`${URL}/login`, {
       headers: {
@@ -45,22 +47,15 @@ export const Login = () => {
       .catch((err) => setIsError(true));
   };
 
-  const checkData = async (data) => {
-    /* return fetch (urlApi + "/login",{method: "POST", headers:{"content-type":"application/json"},body:JSON.stringify(data)})
-    .then (response => response.json())
-    .then (response => {
-      return response
-    })*/
-    if (data.email === "test@gmail.com" && data.password === "test1234") {
-      return { msg: "ok" };
-    } else {
-      return { msg: "credenciales invalidas", status: 404 };
-    }
+  const openModal = () => {
+    setOpen(true);
   };
 
   return (
     <div>
       <h1>Login</h1>
+
+      <SimpleModal open={open} setOpen={setOpen} />
 
       {store.loggedIn ? <Navigate to="/dashboard" /> : <p>Not logged In</p>}
 
@@ -92,6 +87,9 @@ export const Login = () => {
             className="form-control"
             id="exampleInputPassword1"
           />
+          <p className="rec-password" onClick={openModal}>
+            Olvido la contraseña?
+          </p>
         </div>
         <div className="mb-3 form-check">
           <input

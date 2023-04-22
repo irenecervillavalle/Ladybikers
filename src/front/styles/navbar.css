@@ -2,7 +2,8 @@
   color: black;
   background-color: pink;
 }
-#logo,
+
+#nav1,
 .navbar-toggler-icon,
 .navbar-nav .nav-item {
   color: pink;
@@ -56,4 +57,12 @@
 
 .profile {
   width: 85px;
+}
+
+.rec-password{
+  text-align: end;
+  font-size: 14px;
+  margin: 0;
+  margin-top: 10px;
+  cursor: pointer;
 }
