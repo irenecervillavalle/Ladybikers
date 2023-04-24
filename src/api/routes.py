@@ -89,6 +89,35 @@ def existuser():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+#Cambiar Contraseñas         
+@api.route('/changepassword', methods=['POST'])
+def changePassword():
+    if request.method != 'POST':
+        return jsonify({"error": "esta ruta espera el metodo POST"}), 405
+    try:
+        password = request.json.get('password', None)
+        email = request.json.get('email', None)
+        usuario_db = Usuario.query.filter_by(email=email).first()
+
+        print("Email recibido", email)
+        print("Contraseña", password)
+
+        if usuario_db:
+            #Actualizar contraseña
+
+            print("Usuario encontrado:", usuario_db.email)
+            print("Contraseña actual:", usuario_db.contrasena)
+
+            usuario_db.contrasena = password
+            db.session.flush()
+            db.session.commit()
+            return jsonify({"success": True, "message": "La contraseña se cambio con exito"}), 200
+        else:
+            return jsonify({"success": False, "message": "El usuario no existe"}), 404
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+ 
+
 
 # acceder info usuario
 @api.route('/usuario', methods=['GET'])

@@ -39,11 +39,12 @@ export default function SimpleModal({ open, setOpen }) {
   const [modalStyle] = React.useState(getModalStyle);
   const [isError, setIsError] = useState(false);
   const [isExist, setIsExiste] = useState(false);
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
     setIsError(false);
-    const email = e.target.email.value;
     fetch(
       "https://3001-irenecervill-ladybikers-ztsotawghti.ws-eu95.gitpod.io/api/existuser",
       {
@@ -62,6 +63,36 @@ export default function SimpleModal({ open, setOpen }) {
 
         setIsExiste(true);
       });
+  };
+
+  const changePaswword = (e) => {
+    e.preventDefault();
+
+    const repeatPassword = e.target.confirmPassword.value;
+
+    if (repeatPassword !== password) {
+      setIsError(true);
+    }
+
+    fetch(
+      "https://3001-irenecervill-ladybikers-ztsotawghti.ws-eu95.gitpod.io/api/changepassword",
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+            setOpen(false)
+        }
+        console.log(data);
+      });
+
+    console.log(password, repeatPassword);
   };
 
   const handleClose = () => {
@@ -83,10 +114,49 @@ export default function SimpleModal({ open, setOpen }) {
         <TextField
           style={{ width: "100%" }}
           id="outlined-basic"
-          label="Outlined"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          label="Correo Electronico"
           variant="outlined"
           type="email"
           name="email"
+        />
+        <Button type="submit" variant="contained" color="primary">
+          Recuperar
+        </Button>
+      </form>
+    </div>
+  );
+
+  const recoveryPassword = (
+    <div style={modalStyle} className={classes.paper}>
+      {isError && <Alert severity="error">Las contraseñas no coinciden</Alert>}
+      {isExist && <Alert severity="success">Ingresa tu nueva contraseña</Alert>}
+      <h2 id="simple-modal-title">Recuperar Contraseña</h2>
+      <p id="simple-modal-description">
+        Por favor ingresa la contraseña nueva que deseas utilizar.
+      </p>
+      <form
+        onSubmit={changePaswword}
+        style={{ display: "flex", flexDirection: "column", gap: "15px" }}
+      >
+        <TextField
+          style={{ width: "100%" }}
+          id="outlined-basic"
+          label="Contraseña"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          variant="outlined"
+          type="password"
+          name="password"
+        />
+        <TextField
+          style={{ width: "100%" }}
+          id="outlined-basic"
+          label="Repetir Contraseña"
+          variant="outlined"
+          type="password"
+          name="confirmPassword"
         />
         <Button type="submit" variant="contained" color="primary">
           Recuperar
@@ -103,7 +173,7 @@ export default function SimpleModal({ open, setOpen }) {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        {body}
+        {isExist ? recoveryPassword : body}
       </Modal>
     </div>
   );
