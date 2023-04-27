@@ -59,7 +59,7 @@
   width: 85px;
 }
 
-.rec-password{
+.rec-password {
   text-align: end;
   font-size: 14px;
   margin: 0;
@@ -67,18 +67,22 @@
   cursor: pointer;
 }
 
-.card{
+.card {
   background-color: transparent;
   border: none;
 }
 
-.card p{
+.card p {
   margin: 0;
 }
 
-.card-body{
+.card-body {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.like {
+  cursor: pointer;
 }

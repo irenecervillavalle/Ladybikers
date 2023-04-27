@@ -278,15 +278,38 @@ def agregar_favorito(ruta_id):
         ruta = Ruta.query.filter_by(id=ruta_id).first()
         if not ruta:
             return jsonify({"error": "ruta no encontrada con este id"}), 404
+
+        usuario_nombre = get_jwt_identity()
+        usuario = Usuario.query.filter_by(usuario=usuario_nombre).first()
         fav = Favorito(
             ruta_id=ruta_id,
-            usuario_id=get_jwt_identity()
+            usuario_id=usuario.id
         )
-        db.session.add(ruta)
+        db.session.add(fav)
         db.session.commit()
         return jsonify({"mensaje": "ruta creada con exito", "ruta": ruta.serialize(), "favorito_id": fav.id}), 200
     except Exception as e:
         db.session.rollback()
+        return jsonify({"error": str(e)}), 500
+
+
+#Obtener favoritos por ususario
+@api.route('/usuario/favoritos', methods=['GET'])
+@jwt_required()
+def obtener_favoritos_usuario():
+    if request.method != 'GET':
+        return jsonify({"error": "esta ruta espera el metodo GET"}), 405
+    try:
+        usuario_nombre = get_jwt_identity()
+        usuario = Usuario.query.filter_by(usuario=usuario_nombre).first()
+        if not usuario:
+            return jsonify({"error": "usuario no encontrado"}), 404
+
+        favoritos = Favorito.query.filter_by(usuario_id=usuario.id).all()
+        favoritos_serializados = [fav.serialize() for fav in favoritos]
+
+        return jsonify({"favoritos": favoritos_serializados}), 200
+    except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 # borrar favorito

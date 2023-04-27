@@ -66,4 +66,5 @@ class Favorito(db.Model):
             "id": self.id,
             "usuario_id": self.usuario_id,
             "ruta_id": self.ruta_id,
+            "ruta" : self.ruta.serialize()
         }

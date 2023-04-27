@@ -7,8 +7,10 @@ const img1 = "/moteras1.jpg";
 const img2 = "/motohome.jpg";
 
 export const Rutas = () => {
+  const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const [rutas, setRutas] = useState([]);
+  const [isLike, setIsLike] = useState({});
 
   if (!token) {
     return <Navigate to="/login" />;
@@ -29,8 +31,6 @@ export const Rutas = () => {
     const stars = [];
 
     for (let i = 1; i <= 5; i++) {
-      console.log(i);
-      console.log(numero == i);
       if (numero >= i) {
         stars.push(<i className="fa-solid fa-star"></i>);
       } else {
@@ -44,7 +44,30 @@ export const Rutas = () => {
     });
   };
 
-  console.log(rutas?.rutas?.[0]);
+  const addFavorite = (idRuta) => {
+    const token = localStorage.getItem("token");
+    fetch(
+      `https://3001-irenecervill-ladybikers-ztsotawghti.ws-eu96.gitpod.io/api/ruta/${idRuta}/favorito`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.msg == "Missing Authorization Header") {
+          localStorage.removeItem("token");
+          localStorage.removeItem("user");
+          localStorage.removeItem("dataUser");
+          navigate("/login");
+        }
+      });
+    console.log(token);
+    console.log(idRuta);
+  };
 
   return (
     <div className="d-grid m-4 gap-4 rejilla-ruta">
@@ -62,9 +85,27 @@ export const Rutas = () => {
                   <p>Temporalidad: {item.temporalidad}</p>
                 </div>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <p>Calificacion: {calificacion(item.valoracion_usuario)}</p>
-              <p>Me gusta <i class="fa-regular fa-heart"></i></p>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <p>Calificacion: {calificacion(item.valoracion_usuario)}</p>
+                <p>
+                  Me gusta
+                  {isLike[`like${item.id}`] ? (
+                    <i
+                      class="fa-solid fa-heart like"
+                      onMouseOut={() => {
+                        setIsLike({ ...isLike, [`like${item.id}`]: false });
+                      }}
+                      onClick={() => addFavorite(item.id)}
+                    ></i>
+                  ) : (
+                    <i
+                      class="fa-regular fa-heart like"
+                      onMouseOver={() => {
+                        setIsLike({ ...isLike, [`like${item.id}`]: true });
+                      }}
+                    ></i>
+                  )}
+                </p>
               </div>
             </div>
           </div>
