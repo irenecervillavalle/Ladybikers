@@ -66,3 +66,19 @@
   margin-top: 10px;
   cursor: pointer;
 }
+
+.card{
+  background-color: transparent;
+  border: none;
+}
+
+.card p{
+  margin: 0;
+}
+
+.card-body{
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
