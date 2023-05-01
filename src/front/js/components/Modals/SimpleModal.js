@@ -46,7 +46,7 @@ export default function SimpleModal({ open, setOpen }) {
     e.preventDefault();
     setIsError(false);
     fetch(
-      "https://3001-irenecervill-ladybikers-ztsotawghti.ws-eu95.gitpod.io/api/existuser",
+      "https://3001-irenecervill-ladybikers-ztsotawghti.ws-eu96.gitpod.io/api/existuser",
       {
         headers: {
           "Content-Type": "application/json",
@@ -75,7 +75,7 @@ export default function SimpleModal({ open, setOpen }) {
     }
 
     fetch(
-      "https://3001-irenecervill-ladybikers-ztsotawghti.ws-eu95.gitpod.io/api/changepassword",
+      "https://3001-irenecervill-ladybikers-ztsotawghti.ws-eu96.gitpod.io/api/changepassword",
       {
         headers: {
           "Content-Type": "application/json",

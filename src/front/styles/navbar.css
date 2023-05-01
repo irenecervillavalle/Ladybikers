@@ -86,3 +86,22 @@
 .like {
   cursor: pointer;
 }
+
+.login {
+  margin: auto !important;
+}
+.form{
+  margin-top: 150px;
+  width: 400px;
+
+}
+.form2{
+  width: 400px;
+}
+.form-control{
+color: pink!important;
+background-color: black!important;
+}
+#exampleInputEmail1{
+
+}

@@ -53,17 +53,17 @@ export const Login = () => {
 
   return (
     <div>
-      <h1>Login</h1>
+    
 
       <SimpleModal open={open} setOpen={setOpen} />
 
-      {store.loggedIn ? <Navigate to="/dashboard" /> : <p>Not logged In</p>}
+      {store.loggedIn ? <Navigate to="/dashboard" /> : <p></p>}
 
-      <form className="container col-3 mt-5" onSubmit={onSubmit}>
+      <form className="container col-3 mt-5 login" onSubmit={onSubmit}>
         {isError && <p>Credenciales Invalidas</p>}
 
-        <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">
+        <div className="form">
+          <label htmlFor="exampleInputEmail1" className="form-label" style={{fontWeight:"bold", fontSize:"20px"}}>
             Usuario
           </label>
           <input
@@ -77,8 +77,8 @@ export const Login = () => {
             We'll never share your email with anyone else.
           </div>
         </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">
+        <div className="form2">
+          <label htmlFor="exampleInputPassword1" className="form-label" style={{fontWeight:"bold", fontSize:"20px"}}>
             Password
           </label>
           <input

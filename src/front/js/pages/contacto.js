@@ -5,50 +5,25 @@ import moteras1 from "../../img/moteras1.jpg";
 import "../../styles/contacto.css";
 
 export const Contacto = () => {
-  const URL = "https://rickandmortyapi.com/api/character";
-
-  const [resData, setData] = useState("");
-
-  useEffect(() => {
-    fetch(URL, {
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-         data.results.map( character => console.log(character.name) )
-        setData(data)});
-
-    axios(URL).then((data) => console.log(data.data));
-  }, []);
-
-
-
-  return (
-    <div className="grow">
-      <center>
-        <img id="img" src={moteras1} />
-      </center>
-     { resData.results?.map( character => {
-        return (
-          <div
-          style={{
-            backgroundColor: "white",
-            width: "200px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "20px 0px",
-            borderRadius : "10px"
-          }}
-        >
-          <img src={character.image} width="100px" height="100px" />
-          <h3>{character.name}</h3>
-          <p>Status: {character.status}</p>
-        </div>
-        )
-     } )  }
   
-    </div>
+  return (
+    <>
+    
+      <center>
+        <img className="imagen mb-5" id="img1" src={moteras1} />
+      </center>
+
+    <ul className="nav justify-content-center mt-5" style={{color:"black"}}>
+      <li className="nav-item">
+      <a className="nav-link active" aria-current="page" href="#"><i className="fa-brands fa-twitter" style={{color:"black", fontSize:"40px"}}></i></a>
+     </li>
+      <li className="nav-item">
+      <a className="nav-link" href="#"><i className="fa-brands fa-instagram" style={{color:"black", fontSize:"40px"}}></i></a>
+      </li>
+      <li className="nav-item">
+      <a className="nav-link" href="#"><i class="fa-brands fa-facebook" style={{color:"black", fontSize:"40px"}}></i></a>
+      </li>
+    </ul>
+    </>
   );
 };

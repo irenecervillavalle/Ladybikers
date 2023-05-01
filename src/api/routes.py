@@ -322,8 +322,9 @@ def borrar_favorito(fav_id):
         fav = Favorito.query.filter_by(id=fav_id).first()
         if not fav:
             return jsonify({"error": "favorito no encontrado"}), 404
-        usuario_actual = get_jwt_identity()
-        if fav.usuario_id != usuario_actual:
+        usuario_nombre = get_jwt_identity()
+        usuario = Usuario.query.filter_by(usuario=usuario_nombre).first()
+        if fav.usuario_id != usuario.id:
             return jsonify({"error": "id de usuario erronea"}), 403
         db.session.delete(fav)
         db.session.commit()
