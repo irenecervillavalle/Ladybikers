@@ -9,9 +9,10 @@ export const Home = () => {
 	return (
 		<div className="hero">
 			<img src={motohome} alt="Motohome" className="hero_image" />
-			<div className="container">
-			<h1 className="title">Bienvenidas a nuestro Club <i className="fa-solid fa-motorcycle"></i></h1>
-			</div>	
+			<div>
+				<h1 className="title"  style={{width:"100%"}}>Bienvenidas a nuestro Club <i className="fa-solid fa-motorcycle"></i></h1>
+			</div>
+				
 		</div>
 	);
 };

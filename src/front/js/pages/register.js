@@ -49,7 +49,8 @@ export const Register = () => {
   };
 
   return (
-    <form className="container col-3 ma"style={{marginTop: "3%", width:"50px"}} onSubmit={onSubmit}>
+  <div className="formregis">
+    <form className="container col-3 ma"style={{marginTop: "5%"}} onSubmit={onSubmit}>
       {isError && <p>Credenciales Invalidas</p>}
 
       <div className="mb-3">
@@ -124,5 +125,6 @@ export const Register = () => {
 
       <button className="btn btn-secondary">Submit</button>
     </form>
+  </div>
   );
 };

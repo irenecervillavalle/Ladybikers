@@ -16,7 +16,7 @@ jwt = JWTManager(app)
 @api.route('/signup', methods=['POST'])
 def create_user():
     account_sid =  'AC05ae77d092fdbbe8afdf2bb12ee0f4fe'
-    auth_token = 'fc25e9c683ebf3f259896cf3d260d7da'
+    auth_token = 'eaf927a227c6523f66431a35c0e00971'
     client = Client(account_sid, auth_token)
 
     
