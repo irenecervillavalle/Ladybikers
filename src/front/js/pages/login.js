@@ -68,7 +68,7 @@ export const Login = () => {
           </label>
           <input
             type="text"
-            className="form-control"
+            className="form-control bg-secondary text light"
             name="user"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
@@ -84,7 +84,7 @@ export const Login = () => {
           <input
             type="password"
             name="password"
-            className="form-control"
+            className="form-control bg-secondary"
             id="exampleInputPassword1"
           />
           <p className="rec-password" onClick={openModal}>
@@ -101,7 +101,7 @@ export const Login = () => {
             Check me out
           </label>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-secondary" style={{color:"pink"}}>
           Submit
         </button>
       </form>

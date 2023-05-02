@@ -70,7 +70,7 @@ export function Dashboard() {
               className="form-control 1"
               name="user"
               id="exampleInputEmail1"
-              aria-describedby="emailHelp"
+              aria-describedby="emailHelp" style={{backgroundColor: "black"}}
             />
           </div>
           <div className="mb-3">
@@ -84,6 +84,7 @@ export function Dashboard() {
               name="user"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
+              style={{backgroundColor: "black"}}
             />
           </div>
           <div className="mb-3">
@@ -97,6 +98,7 @@ export function Dashboard() {
               name="user"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
+              style={{backgroundColor: "black"}}
             />
           </div>
           <div className="mb-3">
@@ -110,6 +112,7 @@ export function Dashboard() {
               name="user"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
+              style={{backgroundColor: "black"}}
             />
           </div>
           <div className="mb-3">
@@ -123,6 +126,7 @@ export function Dashboard() {
               name="user"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
+              style={{backgroundColor: "black"}}
             />
           </div>
         </form>

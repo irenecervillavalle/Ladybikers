@@ -49,61 +49,65 @@ export const Register = () => {
   };
 
   return (
-    <form className="container col-3 mt-5" onSubmit={onSubmit}>
+    <form className="container col-3 ma"style={{marginTop: "3%", width:"50px"}} onSubmit={onSubmit}>
       {isError && <p>Credenciales Invalidas</p>}
 
       <div className="mb-3">
-        <label htmlFor="Name" className="form-label">
+        <label htmlFor="Name" className="form-label" style={{fontWeight:"bold"}}>
           Name
         </label>
-        <input type="text" name="name" className="form-control" id="Name" />
+        <input type="text" name="name" className="form-control bg-secondary" id="Name" style={{width:"350px"}}/>
       </div>
       <div className="mb-3">
-        <label htmlFor="Name" className="form-label">
+        <label htmlFor="Name" className="form-label" style={{fontWeight:"bold"}}>
           LastName
         </label>
-        <input type="text" name="lastName" className="form-control" id="Name" />
+        <input type="text" name="lastName" className="form-control bg-secondary" id="Name"style={{width:"350px"}} />
       </div>
       <div className="mb-3">
-        <label htmlFor="exampleInputEmail1" className="form-label">
+        <label htmlFor="exampleInputEmail1" className="form-label" style={{fontWeight:"bold"}}>
           Email address
         </label>
         <input
           type="email"
           name="email"
-          className="form-control"
+          className="form-control bg-secondary"
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
+          style={{width:"350px"}}
         />
         <div id="emailHelp" className="form-text"></div>
       </div>
       <div className="mb-3">
-        <label htmlFor="Name" className="form-label">
+        <label htmlFor="Name" className="form-label" style={{fontWeight:"bold"}}>
           User
         </label>
-        <input type="text" name="user" className="form-control" id="Name" />
+        <input type="text" name="user" className="form-control bg-secondary" id="Name" style={{width:"350px"}} />
       </div>
       <div className="mb-3">
-        <label htmlFor="exampleInputPassword1" className="form-label">
+        <label htmlFor="exampleInputPassword1" className="form-label" style={{fontWeight:"bold"}}>
           Password
         </label>
         <input
           type="password"
           name="password"
-          className="form-control"
+          className="form-control bg-secondary"
           id="exampleInputPassword1"
+          style={{width:"350px"}}
+      
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="phonenumber" className="form-label">
+        <label htmlFor="phonenumber" className="form-label" style={{fontWeight:"bold"}}>
           Phone Number
         </label>
         <input
           type="text"
           name="phonenumber"
-          className="form-control"
+          className="form-control bg-secondary"
           id="phonenumber"
           aria-describedby="emailHelp"
+          style={{width:"350px"}}
         />
       </div>
       <div className="mb-3 form-check">
@@ -111,13 +115,14 @@ export const Register = () => {
           type="checkbox"
           className="form-check-input"
           id="exampleCheck1"
+          
         />
         <label className="form-check-label" htmlFor="exampleCheck1">
           Check me out
         </label>
       </div>
 
-      <button className="btn btn-primary">Submit</button>
+      <button className="btn btn-secondary">Submit</button>
     </form>
   );
 };

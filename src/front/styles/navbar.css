@@ -6,7 +6,7 @@
 #nav1,
 .navbar-toggler-icon,
 .navbar-nav .nav-item {
-  color: pink;
+  
 }
 
 #navbarNav {
@@ -100,7 +100,7 @@
 }
 .form-control{
 color: pink!important;
-background-color: black!important;
+
 }
 #exampleInputEmail1{
 

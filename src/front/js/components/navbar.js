@@ -17,20 +17,26 @@ export const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary bg-dark">
       <div className="container">
-        <Link to="/">
-          <h3 id="nav1" className="navbar-brand h1 ms-5">
+  
+          <h3 id="nav1" className="navbar-brand h1 ms-5" style={{color:"pink",textDecoration:"none"}}>
             <i className="fa-solid fa-motorcycle"></i>
             LadyBikers
           </h3>
-        </Link>
+      
       </div>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
+        <Link to="/" className="nav-link">
+            <li id="nav2" className="nav-item">
+              Home
+            </li>
+          </Link>
           <Link to="/about" className="nav-link">
             <li id="nav2" className="nav-item">
               Conocenos
             </li>
           </Link>
+        
           <Link to="/rutas" className="nav-link">
             <li id="nav3" className="nav-item">
               Rutas
